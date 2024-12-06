@@ -7,7 +7,6 @@ export default function Home() {
         <p style={{color: "#ffffff"}} className="font-sans">Sort</p>
         <p style={{color: "#ffffff"}} className="font-sans">Recipes</p>
         <Link href="/add-recipe">
-          {/* <a> */}
             <button style={{
             // borderRadius: '50%', // Makes the button circular
             padding: '6px',
@@ -17,7 +16,6 @@ export default function Home() {
             }}>
             +
             </button>
-            {/* </a> */}
         </Link>
       </div>
     </main>
