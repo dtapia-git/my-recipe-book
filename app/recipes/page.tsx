@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { Recipe } from "../lib/definitions";
-import { recipes } from "../lib/placeholder-data";
 import { RecipeCard } from "../ui/recipes/card";
+import { fetchRecipes } from "../lib/data";
 
-export default function Recipes() {
-  const recipeList = recipes;
+export default async function Recipes() {
+  const recipes = await fetchRecipes();
 
   return (
     <>
       <ul>
-        {recipeList?.map((recipe: Recipe) => (
+        {recipes?.map((recipe: Recipe) => (
           <li className="border-b-2" key={recipe.id}>
             <Link href={`recipes/${recipe.id}`}>
               <RecipeCard recipe={recipe}></RecipeCard>

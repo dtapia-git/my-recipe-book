@@ -1,7 +1,4 @@
-// "use client";
-
 import { fetchRecipe } from "@/app/lib/data";
-import { Recipe } from "@/app/lib/definitions";
 import {
   Accordion,
   AccordionContent,
@@ -32,7 +29,7 @@ export default async function RecipeDetails(props: {
               <AccordionContent>
                 <ul className="list-disc text-black">
                   {recipe.ingredients.map((ingredient: string) => (
-                    <li>{ingredient}</li>
+                    <li key={ingredient}>{ingredient}</li>
                   ))}
                 </ul>
               </AccordionContent>
@@ -42,7 +39,7 @@ export default async function RecipeDetails(props: {
               <AccordionContent>
                 <ol className="list-decimal text-black">
                   {recipe.directions.map((direction: string) => (
-                    <li>{direction}</li>
+                    <li key={direction}>{direction}</li>
                   ))}
                 </ol>
               </AccordionContent>
@@ -52,25 +49,4 @@ export default async function RecipeDetails(props: {
       )}
     </div>
   );
-}
-
-{
-  /* <Accordion flush={true}>
-        <Accordion.Panel>
-          <Accordion.Title>Ingredients</Accordion.Title>
-          <Accordion.Content>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Ingredients list
-            </p>
-          </Accordion.Content>
-        </Accordion.Panel>
-        <Accordion.Panel>
-          <Accordion.Title>Directions</Accordion.Title>
-          <Accordion.Content>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Cooking directions
-            </p>
-          </Accordion.Content>
-        </Accordion.Panel>
-      </Accordion> */
 }
