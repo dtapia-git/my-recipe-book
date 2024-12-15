@@ -1,3 +1,6 @@
+'use client';
+import TextInput from "../ui/recipes/text-input";
+
 export default function Page() {
-    return <p>Add recipe page</p>
+    return <TextInput></TextInput>
 }
