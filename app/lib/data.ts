@@ -1,5 +1,4 @@
 import { sql } from "@vercel/postgres";
-import { recipes } from "../lib/placeholder-data";
 import { Recipe } from "./definitions";
 
 export async function fetchRecipes() {
