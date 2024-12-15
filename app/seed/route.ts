@@ -1,5 +1,5 @@
-import { db } from '@vercel/postgres';
-import { recipes } from '../lib/placeholder-data';
+import { db } from "@vercel/postgres";
+import { recipes } from "../lib/placeholder-data";
 
 const client = await db.connect();
 
@@ -20,28 +20,30 @@ async function seedRecipes() {
 
   const insertedRecipes = await Promise.all(
     recipes.map(async (recipe) => {
+      const ingredients = `{${recipe.ingredients}}`;
+      const directions = `{${recipe.directions}}`;
+
       return client.sql`
         INSERT INTO recipes (id, name, calories, protein, carbohydrates, fat, ingredients, directions)
-        VALUES (${recipe.id}, ${recipe.name}, ${recipe.calories}, ${recipe.protein}, ${recipe.carbohydrates}, ${recipe.fat}, ARRAY['ingredient 1, ingredient 2, ingredient 3'], ARRAY['direction 1, direction 2, direction 3'])
+        VALUES (${recipe.id}, ${recipe.name}, ${recipe.calories}, ${recipe.protein}, ${recipe.carbohydrates}, ${recipe.fat}, ${ingredients}, ${directions})
         ON CONFLICT (id) DO NOTHING;
       `;
-    }),
+    })
   );
 
+  //   return client.sql`DROP TABLE recipes`;
   return insertedRecipes;
-
-  // return client.sql `DROP TABLE recipes`;
 }
 
 export async function GET() {
-    try {
-        await client.sql`BEGIN`;
-        await seedRecipes();
-        await client.sql`COMMIT`;
+  try {
+    await client.sql`BEGIN`;
+    await seedRecipes();
+    await client.sql`COMMIT`;
 
-        return Response.json({ message: 'Database seeded successfully' });
-    } catch (error) {
-        await client.sql`ROLLBACK`;
-        return Response.json({ error }, { status: 500 });
-    }
+    return Response.json({ message: "Database seeded successfully" });
+  } catch (error) {
+    await client.sql`ROLLBACK`;
+    return Response.json({ error }, { status: 500 });
+  }
 }
