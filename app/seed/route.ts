@@ -35,13 +35,13 @@ async function seedRecipes() {
 
 export async function GET() {
     try {
-      await client.sql`BEGIN`;
-      await seedRecipes();
-      await client.sql`COMMIT`;
-  
-      return Response.json({ message: 'Database seeded successfully' });
+        await client.sql`BEGIN`;
+        await seedRecipes();
+        await client.sql`COMMIT`;
+
+        return Response.json({ message: 'Database seeded successfully' });
     } catch (error) {
-      await client.sql`ROLLBACK`;
-      return Response.json({ error }, { status: 500 });
+        await client.sql`ROLLBACK`;
+        return Response.json({ error }, { status: 500 });
     }
-  }
+}
