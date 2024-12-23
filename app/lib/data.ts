@@ -5,13 +5,7 @@ export async function fetchRecipes() {
   try {
     const data = await sql<Recipe>`
       SELECT
-        id,
-        name,
-        calories,
-        carbohydrates,
-        fat,
-        ingredients,
-        directions
+        *
       FROM recipes
       ORDER BY name ASC
     `;
@@ -27,13 +21,7 @@ export async function fetchRecipe(id: string) {
   try {
     const data = await sql<Recipe>`
       SELECT
-        id,
-        name,
-        calories,
-        carbohydrates,
-        fat,
-        ingredients,
-        directions
+        *
       FROM recipes
       WHERE recipes.id = ${id}
     `;
