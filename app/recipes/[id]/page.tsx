@@ -7,7 +7,7 @@ import {
 } from "flowbite-react";
 import { Button, Card } from "flowbite-react";
 import Link from "next/link";
-import { HiOutlineArrowLeft } from "react-icons/hi";
+import { HiOutlineArrowLeft } from "react-icons/hi2";
 
 export default async function RecipeDetails(props: {
   params: Promise<{ id: string }>;
