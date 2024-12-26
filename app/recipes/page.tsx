@@ -7,16 +7,16 @@ export default async function Recipes() {
   const recipes = await fetchRecipes();
 
   return (
-    <>
+    <div>
       <ul>
         {recipes?.map((recipe: Recipe) => (
           <li className="border-b-2" key={recipe.id}>
-            <Link href={`recipes/${recipe.id}`}>
+            <Link href={`recipes/${recipe.id}/view`}>
               <RecipeCard recipe={recipe}></RecipeCard>
             </Link>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

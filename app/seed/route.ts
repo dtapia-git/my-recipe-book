@@ -5,6 +5,8 @@ const client = await db.connect();
 
 async function seedRecipes() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  const dropTable = await client.sql`DROP TABLE recipes`;
+
   const createTable = await client.sql`
     CREATE TABLE IF NOT EXISTS recipes (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -31,7 +33,6 @@ async function seedRecipes() {
     })
   );
 
-  //   return client.sql`DROP TABLE recipes`;
   return insertedRecipes;
 }
 
