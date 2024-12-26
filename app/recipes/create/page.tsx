@@ -1,3 +1,5 @@
+import TextInput from "@/app/ui/recipes/text-input";
+
 export default function Page() {
-  return <p>Create Recipe Page</p>;
+  return <TextInput></TextInput>;
 }
