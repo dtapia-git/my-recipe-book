@@ -1,4 +1,3 @@
-import { Recipe } from "@/app/lib/definitions";
 import {
   Accordion,
   AccordionContent,
@@ -7,9 +6,20 @@ import {
   Card,
 } from "flowbite-react";
 import { DeleteRecipe } from "./buttons";
-import { CardSkeleton } from "./skeletons";
+import { fetchRecipe } from "@/app/lib/data";
+import { notFound } from "next/navigation";
 
-export function RecipeDetailCard({ recipe }: { recipe: Recipe }) {
+export default async function RecipeDetailCard({
+  recipeId,
+}: {
+  recipeId: string;
+}) {
+  const recipe = await fetchRecipe(recipeId);
+
+  if (!recipe) {
+    notFound();
+  }
+
   return (
     <Card className="max-w-lg">
       <div id="header" className="flex flex-col border-b gap-1 px-5 py-3">
