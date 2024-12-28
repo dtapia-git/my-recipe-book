@@ -50,8 +50,6 @@ export default async function RecipeDetailCard({
           </AccordionContent>
         </AccordionPanel>
       </Accordion>
-
-      <DeleteRecipe id={recipe.id}></DeleteRecipe>
     </Card>
   );
 }
