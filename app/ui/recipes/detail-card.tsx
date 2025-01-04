@@ -5,7 +5,6 @@ import {
   AccordionTitle,
   Card,
 } from "flowbite-react";
-import { DeleteRecipe } from "./buttons";
 import { fetchRecipe } from "@/app/lib/data";
 import { notFound } from "next/navigation";
 
