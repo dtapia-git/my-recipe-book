@@ -118,7 +118,8 @@ export function EditRecipeForm({
 								className="bg-inherit border-0 w-full focus:ring-0 text-black rounded-lg"
 								id="add-ingredient"
 								type="text"
-								inputMode="numeric"
+								inputMode="text"
+								enterKeyHint="enter"	
 								value={ingredientInputValue}
 								onChange={(event) =>
 									setIngredientInputValue(event.target.value)
@@ -164,6 +165,7 @@ export function EditRecipeForm({
 								id="add-direction"
 								type="text"
 								inputMode="text"
+								enterKeyHint="enter"	
 								value={directionInputValue}
 								onChange={(event) => setDirectionInputValue(event.target.value)}
 								onKeyDown={(event) => {

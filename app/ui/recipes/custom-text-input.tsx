@@ -34,6 +34,7 @@ export default function CustomTextInput({
 					name={name}
 					inputMode="text"
 					type="text"
+					enterKeyHint="enter"
 					value={inputValue}
 					onChange={(event) => setInputValue(event.target.value)}
 				/>
