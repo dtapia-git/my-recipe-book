@@ -118,7 +118,7 @@ export function EditRecipeForm({
 								className="bg-inherit border-0 w-full focus:ring-0 text-black rounded-lg"
 								id="add-ingredient"
 								type="text"
-								inputMode="text"
+								inputMode="numeric"
 								value={ingredientInputValue}
 								onChange={(event) =>
 									setIngredientInputValue(event.target.value)
