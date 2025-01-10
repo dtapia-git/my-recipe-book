@@ -1,6 +1,4 @@
 import type { Recipe } from "@/app/lib/definitions";
-import { Button } from "flowbite-react";
-import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 
 export function RecipeListCard({ recipe }: { recipe: Recipe }) {
@@ -13,11 +11,7 @@ export function RecipeListCard({ recipe }: { recipe: Recipe }) {
 					{recipe.carbohydrates}g | Fat: {recipe.fat}g
 				</p>
 			</div>
-			<Link href={`recipes/${recipe.id}/view`}>
-				<Button className="ml-auto bg-transparent h-full [&>span]:p-0">
-					<IoIosArrowForward className="h-5 w-5 text-gray-600" />
-				</Button>
-			</Link>
+			<IoIosArrowForward className="h-5 w-5 text-gray-600" />
 		</div>
 	);
 }

@@ -11,6 +11,5 @@ export type Recipe = {
 
 export type ListItem = {
 	id: string;
-	name: string;
 	value: string;
 };

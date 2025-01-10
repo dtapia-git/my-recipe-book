@@ -24,10 +24,12 @@ export default function CustomTextInput({
 				"flex items-center bg-gray-50 border rounded-lg",
 				validationError?.length && "border-red-500 bg-red-100",
 			)}
+			style={{ backgroundColor: "rgb(239 245 242)" }}
 		>
-			<div className="flex-1 p-0.5">
+			<div className="flex-1">
 				<input
-					className="bg-inherit border-0 w-full focus:ring-0 text-black"
+					className="bg-inherit border-0 w-full focus:ring-0 rounded-lg"
+					style={{ color: "rgb(0, 0, 0)" }}
 					id={id}
 					name={name}
 					type="text"
@@ -39,10 +41,13 @@ export default function CustomTextInput({
 			{inputValue && (
 				<Button
 					color="light"
-					className="bg-transparent border-0 hover:bg-violet-600"
+					className="bg-transparent border-0 h-10 p-0"
 					onClick={() => setInputValue("")}
 				>
-					<IoIosCloseCircle className="h-5 w-5 self-center fill-slate-500" />
+					<IoIosCloseCircle
+						className="h-5 w-5 self-center fill-slate-500"
+						style={{ fill: "rgb(28 38 36)" }}
+					/>
 				</Button>
 			)}
 		</div>

@@ -26,13 +26,15 @@ export type FormState = {
 
 export async function updateRecipe(
 	id: string,
+	ingredientsList: string[],
+	directionsList: string[],
 	currentState: FormState,
 	formData: FormData,
 ) {
 	const validatedFields = UpdateRecipe.safeParse({
 		recipeName: formData.get("recipeName"),
-		ingredients: formData.getAll("ingredient"),
-		directions: formData.getAll("direction"),
+		ingredients: ingredientsList,
+		directions: directionsList,
 	});
 
 	if (!validatedFields.success) {
@@ -43,6 +45,7 @@ export async function updateRecipe(
 	}
 
 	const { recipeName, ingredients, directions } = validatedFields.data;
+	console.log(validatedFields.data, "validatedFields.data");
 	const ingredientsSql = `{${ingredients}}`;
 	const directionSql = `{${directions}}`;
 

@@ -18,7 +18,6 @@ export default function TextInputListItem({
 			<input
 				className="bg-gray-50 border-0 w-full focus:ring-0 text-black"
 				type="text"
-				name={item.name}
 				value={item.value}
 				onChange={(event) =>
 					onChangeItem({
