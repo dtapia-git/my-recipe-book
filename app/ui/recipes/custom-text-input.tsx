@@ -32,6 +32,7 @@ export default function CustomTextInput({
 					style={{ color: "rgb(0, 0, 0)" }}
 					id={id}
 					name={name}
+					inputMode="text"
 					type="text"
 					value={inputValue}
 					onChange={(event) => setInputValue(event.target.value)}

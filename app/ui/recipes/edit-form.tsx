@@ -118,6 +118,7 @@ export function EditRecipeForm({
 								className="bg-inherit border-0 w-full focus:ring-0 text-black rounded-lg"
 								id="add-ingredient"
 								type="text"
+								inputMode="text"
 								value={ingredientInputValue}
 								onChange={(event) =>
 									setIngredientInputValue(event.target.value)
@@ -133,7 +134,7 @@ export function EditRecipeForm({
 						</div>
 					</div>
 
-					<div className="flex-end">
+					{/* <div className="flex-end">
 						<Button
 							style={{ backgroundColor: "rgb(227 234 231)", color: "rgb(0 106 97)" }}
 							type="button"
@@ -142,7 +143,7 @@ export function EditRecipeForm({
 						>
 							Add
 						</Button>
-					</div>
+					</div> */}
 				</div>
 				<ItemsList
 					items={ingredientsList}
@@ -162,6 +163,7 @@ export function EditRecipeForm({
 								className="bg-inherit border-0 w-full focus:ring-0 text-black rounded-lg"
 								id="add-direction"
 								type="text"
+								inputMode="text"
 								value={directionInputValue}
 								onChange={(event) => setDirectionInputValue(event.target.value)}
 								onKeyDown={(event) => {
@@ -175,7 +177,7 @@ export function EditRecipeForm({
 						</div>
 					</div>
 
-					<div className="flex-end">
+					{/* <div className="flex-end">
 						<Button
 							type="button"
 							className="bg-transparent focus:bg-transparent hover:enabled:bg-gray-50  text-cyan-700 p-0 border-gray-300"
@@ -183,7 +185,7 @@ export function EditRecipeForm({
 						>
 							Add
 						</Button>
-					</div>
+					</div> */}
 				</div>
 				<ItemsList
 					items={directionsList}
