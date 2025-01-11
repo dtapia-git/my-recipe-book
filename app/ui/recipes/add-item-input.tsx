@@ -12,6 +12,7 @@ export function AddItemInput({
 			<div className="flex rounded-lg">
 				<div className="flex px-2 w-full">
 					<input
+						autoFocus
 						className="border-0 w-full focus:ring-0 text-black rounded-lg"
 						id="add-ingredient"
 						type="text"
