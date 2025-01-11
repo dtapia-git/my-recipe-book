@@ -5,7 +5,9 @@ import type { ListItem, Recipe } from "@/app/lib/definitions";
 import cn from "classnames";
 import { Button, Label } from "flowbite-react";
 import { useActionState, useState } from "react";
+import { IoAdd } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
+import { AddItemInput } from "./add-item-input";
 import CustomTextInput from "./custom-text-input";
 import { ItemsList } from "./items-list";
 
@@ -15,6 +17,8 @@ export function EditRecipeForm({
 	recipe: Recipe;
 }) {
 	const [ingredientInputValue, setIngredientInputValue] = useState<string>("");
+	const [isAddIngredientEnabled, setIsAddIngredientEnabled] =
+		useState<boolean>(false);
 	const [directionInputValue, setDirectionInputValue] = useState<string>("");
 	const [ingredientsList, setIngredientsList] = useState(initializeIngredients);
 	const [directionsList, setDirectionsList] = useState(initializeDirections);
@@ -37,12 +41,20 @@ export function EditRecipeForm({
 		});
 	}
 
-	function handleAddIngredient() {
-		if (ingredientInputValue) {
-			setIngredientsList([
-				...ingredientsList,
-				{ id: uuidv4(), value: ingredientInputValue },
-			]);
+	function handleClickAddIngredient() {}
+
+	// function handleAddIngredient() {
+	// 	if (ingredientInputValue) {
+	// 		setIngredientsList([
+	// 			...ingredientsList,
+	// 			{ id: uuidv4(), value: ingredientInputValue },
+	// 		]);
+	// 	}
+	// }
+
+	function handleAddIngredient(value: string) {
+		if (value) {
+			setIngredientsList([...ingredientsList, { id: uuidv4(), value: value }]);
 		}
 	}
 
@@ -106,50 +118,28 @@ export function EditRecipeForm({
 				</div>
 			</section>
 			<section>
-				<div className="flex items-end gap-1">
-					<div className="flex-1">
-						<Label
-							htmlFor="add-ingredient"
-							value="Add Ingredients"
-							className="text-xs font-medium text-gray-600"
-						/>
-						<div className="flex bg-gray-50 border rounded-lg">
-							<input
-								className="bg-inherit border-0 w-full focus:ring-0 text-black rounded-lg"
-								id="add-ingredient"
-								type="text"
-								inputMode="text"
-								enterKeyHint="enter"	
-								value={ingredientInputValue}
-								onChange={(event) =>
-									setIngredientInputValue(event.target.value)
-								}
-								onKeyDown={(event) => {
-									if (event.key === "Enter") {
-										event.preventDefault();
-										setIngredientInputValue("");
-										handleAddIngredient();
-									}
-								}}
-							/>
-						</div>
-					</div>
-
-					{/* <div className="flex-end">
-						<Button
-							style={{ backgroundColor: "rgb(227 234 231)", color: "rgb(0 106 97)" }}
-							type="button"
-							className="bg-transparent focus:bg-transparent hover:enabled:bg-gray-50   p-0 border-gray-300"
-							onClick={handleAddIngredient}
-						>
-							Add
-						</Button>
-					</div> */}
+				<div className="max-h-72 overflow-scroll">
+					<ItemsList
+						items={ingredientsList}
+						onDeleteListItem={handleDeleteIngredient}
+					/>
 				</div>
-				<ItemsList
-					items={ingredientsList}
-					onDeleteListItem={handleDeleteIngredient}
-				/>
+
+				{isAddIngredientEnabled ? (
+					<AddItemInput
+						onAddItem={(value: string) => handleAddIngredient(value)}
+						onCancel={() => setIsAddIngredientEnabled(false)}
+					/>
+				) : (
+					<Button
+						size="xs"
+						className="bg-transparent text-cyan-700 px-0"
+						onClick={() => setIsAddIngredientEnabled(true)}
+					>
+						<IoAdd className="h-4 w-5" />
+						Add Ingredient
+					</Button>
+				)}
 			</section>
 			<section>
 				<div className="flex items-end gap-1">
@@ -165,7 +155,7 @@ export function EditRecipeForm({
 								id="add-direction"
 								type="text"
 								inputMode="text"
-								enterKeyHint="enter"	
+								enterKeyHint="enter"
 								value={directionInputValue}
 								onChange={(event) => setDirectionInputValue(event.target.value)}
 								onKeyDown={(event) => {
