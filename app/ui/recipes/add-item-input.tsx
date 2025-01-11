@@ -8,6 +8,15 @@ export function AddItemInput({
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [inputValue, setInputValue] = useState<string>("");
 
+	function handleFocus() {
+		if (inputRef.current) {
+			inputRef.current.scrollIntoView({
+				behavior: "smooth",
+				block: "nearest",
+			});
+		}
+	}
+
 	return (
 		<div className="sticky bottom-0 pt-2 bg-cyan-700 rounded">
 			<div className="flex rounded-lg">
@@ -21,7 +30,7 @@ export function AddItemInput({
 						inputMode="text"
 						enterKeyHint="enter"
 						value={inputValue}
-						onFocus={(event) => event.preventDefault()}
+						onFocus={handleFocus}
 						onChange={(event) => setInputValue(event.target.value)}
 						onKeyDown={(event) => {
 							if (event.key === "Enter") {
