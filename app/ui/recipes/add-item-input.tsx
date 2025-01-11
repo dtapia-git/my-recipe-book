@@ -1,10 +1,11 @@
 import { Button } from "flowbite-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export function AddItemInput({
 	onAddItem,
 	onCancel,
 }: { onAddItem: CallableFunction; onCancel: CallableFunction }) {
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [inputValue, setInputValue] = useState<string>("");
 
 	return (
@@ -13,12 +14,14 @@ export function AddItemInput({
 				<div className="flex px-2 w-full">
 					<input
 						autoFocus
+						ref={inputRef}
 						className="border-0 w-full focus:ring-0 text-black rounded-lg"
 						id="add-ingredient"
 						type="text"
 						inputMode="text"
 						enterKeyHint="enter"
 						value={inputValue}
+						onFocus={(event) => event.preventDefault()}
 						onChange={(event) => setInputValue(event.target.value)}
 						onKeyDown={(event) => {
 							if (event.key === "Enter") {
@@ -45,8 +48,10 @@ export function AddItemInput({
 					className="bg-inherit text-gray-200"
 					onClick={(event: any) => {
 						console.log("click Add");
-						onAddItem(inputValue);
 						setInputValue("");
+						inputRef.current?.focus();
+
+						onAddItem(inputValue);
 					}}
 				>
 					Add

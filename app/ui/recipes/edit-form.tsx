@@ -4,7 +4,7 @@ import { type FormState, updateRecipe } from "@/app/lib/actions";
 import type { ListItem, Recipe } from "@/app/lib/definitions";
 import cn from "classnames";
 import { Button, Label } from "flowbite-react";
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useRef, useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import { AddItemInput } from "./add-item-input";
@@ -16,9 +16,6 @@ export function EditRecipeForm({
 }: {
 	recipe: Recipe;
 }) {
-	const [ingredientInputValue, setIngredientInputValue] = useState<string>("");
-
-	const [directionInputValue, setDirectionInputValue] = useState<string>("");
 	const [ingredientsList, setIngredientsList] = useState(initializeIngredients);
 	const [directionsList, setDirectionsList] = useState(initializeDirections);
 
@@ -28,25 +25,28 @@ export function EditRecipeForm({
 		ingredientsList.map((item: ListItem) => item.value),
 		directionsList.map((item: ListItem) => item.value),
 	);
+	const ingredientInputRef = useRef<HTMLInputElement>(null);
+	const directionInputRef = useRef<HTMLInputElement>(null);
 	const initialState: FormState = { message: null, errors: {} };
 	const [state, formAction] = useActionState(updateRecipeWithId, initialState);
-	const ingredientInputRef = useRef<HTMLInputElement>(null);
 	const [isAddIngredientEnabled, setIsAddIngredientEnabled] =
 		useState<boolean>(false);
-	useEffect(() => {
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		const handleClickOutside = (event: any) => {
-			if (
-				ingredientInputRef.current &&
-				!ingredientInputRef.current.contains(event.target)
-			) {
-				setIsAddIngredientEnabled(false);
-			}
-		};
+	const [isAddDirectionEnabled, setIsAddDirectionEnabled] =
+		useState<boolean>(false);
+	// useEffect(() => {
+	// 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// 	const handleClickOutside = (event: any) => {
+	// 		if (
+	// 			ingredientInputRef.current &&
+	// 			!ingredientInputRef.current.contains(event.target)
+	// 		) {
+	// 			setIsAddIngredientEnabled(false);
+	// 		}
+	// 	};
 
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => document.removeEventListener("mousedown", handleClickOutside);
-	}, []);
+	// 	document.addEventListener("mousedown", handleClickOutside);
+	// 	return () => document.removeEventListener("mousedown", handleClickOutside);
+	// }, []);
 
 	function initializeIngredients() {
 		return recipe.ingredients.map((ingredient) => {
@@ -56,17 +56,6 @@ export function EditRecipeForm({
 			};
 		});
 	}
-
-	function handleClickAddIngredient() {}
-
-	// function handleAddIngredient() {
-	// 	if (ingredientInputValue) {
-	// 		setIngredientsList([
-	// 			...ingredientsList,
-	// 			{ id: uuidv4(), value: ingredientInputValue },
-	// 		]);
-	// 	}
-	// }
 
 	function handleAddIngredient(value: string) {
 		if (value) {
@@ -89,12 +78,9 @@ export function EditRecipeForm({
 		});
 	}
 
-	function handleAddDirection() {
-		if (directionInputValue) {
-			setDirectionsList([
-				...directionsList,
-				{ id: uuidv4(), value: directionInputValue },
-			]);
+	function handleAddDirection(value: string) {
+		if (value) {
+			setDirectionsList([...directionsList, { id: uuidv4(), value: value }]);
 		}
 	}
 
@@ -133,7 +119,7 @@ export function EditRecipeForm({
 				className="rounded"
 				style={{ backgroundColor: "rgb(244 251 248)" }}
 			>
-				<div className="max-h-72 overflow-scroll">
+				<div className="max-h-52 overflow-scroll">
 					<ItemsList
 						items={ingredientsList}
 						onDeleteListItem={handleDeleteIngredient}
@@ -162,47 +148,33 @@ export function EditRecipeForm({
 				)}
 			</section>
 			<section>
-				<div className="flex items-end gap-1">
-					<div className="flex-1">
-						<Label
-							htmlFor="add-direction"
-							value="Add Directions"
-							className="text-xs font-medium text-gray-600"
-						/>
-						<div className="flex bg-gray-50 border rounded-lg">
-							<input
-								className="bg-inherit border-0 w-full focus:ring-0 text-black rounded-lg"
-								id="add-direction"
-								type="text"
-								inputMode="text"
-								enterKeyHint="enter"
-								value={directionInputValue}
-								onChange={(event) => setDirectionInputValue(event.target.value)}
-								onKeyDown={(event) => {
-									if (event.key === "Enter") {
-										event.preventDefault();
-										setDirectionInputValue("");
-										handleAddDirection();
-									}
-								}}
-							/>
-						</div>
-					</div>
-
-					{/* <div className="flex-end">
-						<Button
-							type="button"
-							className="bg-transparent focus:bg-transparent hover:enabled:bg-gray-50  text-cyan-700 p-0 border-gray-300"
-							onClick={handleAddDirection}
-						>
-							Add
-						</Button>
-					</div> */}
+				<div className="max-h-52 overflow-scroll">
+					<ItemsList
+						items={directionsList}
+						onDeleteListItem={handleDeleteDirection}
+					/>
 				</div>
-				<ItemsList
-					items={directionsList}
-					onDeleteListItem={handleDeleteDirection}
-				/>
+
+				{isAddDirectionEnabled ? (
+					<div ref={ingredientInputRef}>
+						<AddItemInput
+							onAddItem={(value: string) => handleAddDirection(value)}
+							onCancel={() => {
+								console.log("click Cancel");
+								setIsAddDirectionEnabled(false);
+							}}
+						/>
+					</div>
+				) : (
+					<Button
+						size="xs"
+						className="bg-transparent text-cyan-700 px-0"
+						onClick={() => setIsAddDirectionEnabled(true)}
+					>
+						<IoAdd className="h-4 w-5" />
+						Add Direction
+					</Button>
+				)}
 			</section>
 			<div className="fixed bottom-4 right-3">
 				<Button type="submit" pill>
