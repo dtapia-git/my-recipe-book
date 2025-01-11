@@ -19,6 +19,7 @@ export function AddItemInput({
 						inputMode="text"
 						enterKeyHint="enter"
 						value={inputValue}
+						onBlur={() => onCancel()}
 						onChange={(event) => setInputValue(event.target.value)}
 						onKeyDown={(event) => {
 							if (event.key === "Enter") {
