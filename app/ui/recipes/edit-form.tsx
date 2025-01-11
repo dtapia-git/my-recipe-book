@@ -4,7 +4,7 @@ import { type FormState, updateRecipe } from "@/app/lib/actions";
 import type { ListItem, Recipe } from "@/app/lib/definitions";
 import cn from "classnames";
 import { Button, Label } from "flowbite-react";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import { AddItemInput } from "./add-item-input";
@@ -17,8 +17,7 @@ export function EditRecipeForm({
 	recipe: Recipe;
 }) {
 	const [ingredientInputValue, setIngredientInputValue] = useState<string>("");
-	const [isAddIngredientEnabled, setIsAddIngredientEnabled] =
-		useState<boolean>(false);
+
 	const [directionInputValue, setDirectionInputValue] = useState<string>("");
 	const [ingredientsList, setIngredientsList] = useState(initializeIngredients);
 	const [directionsList, setDirectionsList] = useState(initializeDirections);
@@ -31,6 +30,22 @@ export function EditRecipeForm({
 	);
 	const initialState: FormState = { message: null, errors: {} };
 	const [state, formAction] = useActionState(updateRecipeWithId, initialState);
+	const ingredientInputRef = useRef<HTMLInputElement>(null);
+	const [isAddIngredientEnabled, setIsAddIngredientEnabled] =
+		useState<boolean>(false);
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if (
+				ingredientInputRef.current &&
+				!ingredientInputRef.current.contains(event.target)
+			) {
+				setIsAddIngredientEnabled(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
+	}, []);
 
 	function initializeIngredients() {
 		return recipe.ingredients.map((ingredient) => {
@@ -88,14 +103,10 @@ export function EditRecipeForm({
 		);
 	}
 
-	console.log(JSON.stringify(state), "state in edit form");
+	// console.log(JSON.stringify(state), "state in edit form");
 
 	return (
-		<form
-			action={formAction}
-			className="flex flex-col h-full gap-4 p-3"
-			style={{ backgroundColor: "rgb(244 251 248)" }}
-		>
+		<form action={formAction} className="flex flex-col h-full gap-4 p-3">
 			<section>
 				<div>
 					<div className="block">
@@ -117,7 +128,10 @@ export function EditRecipeForm({
 					/>
 				</div>
 			</section>
-			<section>
+			<section
+				className="rounded"
+				style={{ backgroundColor: "rgb(244 251 248)" }}
+			>
 				<div className="max-h-72 overflow-scroll">
 					<ItemsList
 						items={ingredientsList}
@@ -126,10 +140,15 @@ export function EditRecipeForm({
 				</div>
 
 				{isAddIngredientEnabled ? (
-					<AddItemInput
-						onAddItem={(value: string) => handleAddIngredient(value)}
-						onCancel={() => setIsAddIngredientEnabled(false)}
-					/>
+					<div ref={ingredientInputRef}>
+						<AddItemInput
+							onAddItem={(value: string) => handleAddIngredient(value)}
+							onCancel={() => {
+								console.log("click Cancel");
+								setIsAddIngredientEnabled(false);
+							}}
+						/>
+					</div>
 				) : (
 					<Button
 						size="xs"

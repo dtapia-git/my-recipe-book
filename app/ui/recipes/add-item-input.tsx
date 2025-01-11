@@ -19,7 +19,6 @@ export function AddItemInput({
 						inputMode="text"
 						enterKeyHint="enter"
 						value={inputValue}
-						onBlur={() => onCancel()}
 						onChange={(event) => setInputValue(event.target.value)}
 						onKeyDown={(event) => {
 							if (event.key === "Enter") {
@@ -32,13 +31,25 @@ export function AddItemInput({
 					/>
 				</div>
 			</div>
-			<div className="py-2">
+			<div className="flex justify-between py-2">
 				<Button
 					size="xs"
 					className="bg-inherit text-gray-200"
 					onClick={() => onCancel()}
 				>
 					Cancel
+				</Button>
+
+				<Button
+					size="sm"
+					className="bg-inherit text-gray-200"
+					onClick={(event) => {
+						console.log("click Add");
+						onAddItem(inputValue);
+						setInputValue("");
+					}}
+				>
+					Add
 				</Button>
 			</div>
 		</div>

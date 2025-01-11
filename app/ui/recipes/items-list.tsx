@@ -14,11 +14,13 @@ export function ItemsList({
 	return (
 		<div>
 			{items.length > 0 && (
-				<ul className="list-none text-sm text-gray-700 py-2 px-2">
+				<ul className="list-none text-sm py-2 px-2">
 					{items.map((item: ListItem) => (
 						<li key={item.id}>
 							<div className="flex items-center">
-								<div className="flex-1">{item.value}</div>
+								<div className="flex-1" style={{ color: "rgb(28 38 36)" }}>
+									{item.value}
+								</div>
 								<Button
 									pill
 									size="xs"
