@@ -43,7 +43,7 @@ export function AddItemInput({
 				<Button
 					size="sm"
 					className="bg-inherit text-gray-200"
-					onClick={(event) => {
+					onClick={(event: any) => {
 						console.log("click Add");
 						onAddItem(inputValue);
 						setInputValue("");

@@ -34,7 +34,8 @@ export function EditRecipeForm({
 	const [isAddIngredientEnabled, setIsAddIngredientEnabled] =
 		useState<boolean>(false);
 	useEffect(() => {
-		const handleClickOutside = (event) => {
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		const handleClickOutside = (event: any) => {
 			if (
 				ingredientInputRef.current &&
 				!ingredientInputRef.current.contains(event.target)
