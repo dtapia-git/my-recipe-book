@@ -115,10 +115,7 @@ export function EditRecipeForm({
 					/>
 				</div>
 			</section>
-			<section
-				className="rounded"
-				style={{ backgroundColor: "rgb(244 251 248)" }}
-			>
+			<section className="rounded py-2 px-2 flex flex-col gap-2 surface-container-low">
 				<div className="max-h-52 overflow-scroll">
 					<ItemsList
 						items={ingredientsList}
@@ -139,15 +136,19 @@ export function EditRecipeForm({
 				) : (
 					<Button
 						size="xs"
-						className="bg-transparent text-cyan-700 px-0"
+						className="bg-transparent p-0 button-outline"
+						style={{
+							color: "rgb(96 122 117)",
+						}}
 						onClick={() => setIsAddIngredientEnabled(true)}
 					>
-						<IoAdd className="h-4 w-5" />
+						<IoAdd className="h-4" />
 						Add Ingredient
 					</Button>
 				)}
 			</section>
-			<section>
+
+			<section className="rounded py-2 px-2 flex flex-col gap-2 surface-container-low">
 				<div className="max-h-52 overflow-scroll">
 					<ItemsList
 						items={directionsList}
@@ -168,7 +169,10 @@ export function EditRecipeForm({
 				) : (
 					<Button
 						size="xs"
-						className="bg-transparent text-cyan-700 px-0"
+						className="bg-transparent p-0 button-outline"
+						style={{
+							color: "rgb(96 122 117)",
+						}}
 						onClick={() => setIsAddDirectionEnabled(true)}
 					>
 						<IoAdd className="h-4 w-5" />
@@ -177,7 +181,7 @@ export function EditRecipeForm({
 				)}
 			</section>
 			<div className="fixed bottom-4 right-3">
-				<Button type="submit" pill>
+				<Button type="submit" className="primary-container" pill>
 					Save Recipe
 				</Button>
 			</div>

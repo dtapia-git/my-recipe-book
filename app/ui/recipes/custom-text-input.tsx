@@ -17,14 +17,15 @@ export default function CustomTextInput({
 	validationError?: string[];
 }) {
 	const [inputValue, setInputValue] = useState(value);
+	const [isInputFocused, setIsInputFocused] = useState(false);
 
 	return (
 		<div
 			className={cn(
-				"flex items-center bg-gray-50 border rounded-lg",
+				"flex items-center rounded-lg button-outline",
 				validationError?.length && "border-red-500 bg-red-100",
+				isInputFocused && "primary-outline",
 			)}
-			style={{ backgroundColor: "rgb(239 245 242)" }}
 		>
 			<div className="flex-1">
 				<input
@@ -34,6 +35,8 @@ export default function CustomTextInput({
 					name={name}
 					inputMode="text"
 					type="text"
+					onFocus={() => setIsInputFocused(true)}
+					onBlur={() => setIsInputFocused(false)}
 					enterKeyHint="enter"
 					value={inputValue}
 					onChange={(event) => setInputValue(event.target.value)}
@@ -47,8 +50,8 @@ export default function CustomTextInput({
 					onClick={() => setInputValue("")}
 				>
 					<IoIosCloseCircle
-						className="h-5 w-5 self-center fill-slate-500"
-						style={{ fill: "rgb(28 38 36)" }}
+						className="h-5 w-5 self-center"
+						style={{ color: "rgb(59 69 67)" }}
 					/>
 				</Button>
 			)}

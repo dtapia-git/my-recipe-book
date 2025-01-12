@@ -16,12 +16,12 @@ export default async function RecipeEdit(props: {
 
 	return (
 		<div className="min-w-10 max-w-lg mx-auto">
-			<div className="flex items-center justify-between px-1 py-2 sticky top-0 ">
+			<div className="flex items-center justify-between px-1 py-2 sticky top-0 z-10 surface-container-high">
 				<Link href={"view"}>
 					<Button
 						size="xs"
 						color="light"
-						className="border-none p-0 bg-inherit text-cyan-700"
+						className="border-none p-0 bg-inherit tertiary"
 						pill
 					>
 						Cancel

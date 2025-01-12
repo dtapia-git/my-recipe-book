@@ -2,7 +2,7 @@
 
 import type { ListItem } from "@/app/lib/definitions";
 import { Button } from "flowbite-react";
-import { IoIosRemoveCircleOutline } from "react-icons/io";
+import { IoIosRemoveCircle } from "react-icons/io";
 
 export function ItemsList({
 	items,
@@ -14,7 +14,7 @@ export function ItemsList({
 	return (
 		<div>
 			{items.length > 0 && (
-				<ul className="list-none text-sm py-2 px-2">
+				<ul className="list-none text-sm">
 					{items.map((item: ListItem) => (
 						<li key={item.id}>
 							<div className="flex items-center">
@@ -27,7 +27,14 @@ export function ItemsList({
 									className="bg-transparent hover:enabled:bg-gray-100"
 									onClick={() => onDeleteListItem(item.id)}
 								>
-									<IoIosRemoveCircleOutline className="h-5 w-5 self-center  text-slate-500" />
+									<IoIosRemoveCircle
+										className="h-5 w-5"
+										style={{ fill: "rgb(59 69 67)" }}
+									/>
+									{/* <IoIosRemoveCircleOutline
+										className="h-5 w-5"
+										style={{ fill: "rgb(28 38 36)" }}
+									/> */}
 								</Button>
 							</div>
 						</li>

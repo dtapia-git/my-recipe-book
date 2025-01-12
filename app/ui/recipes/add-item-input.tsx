@@ -18,7 +18,7 @@ export function AddItemInput({
 	}
 
 	return (
-		<div className="sticky bottom-0 pt-2 bg-cyan-700 rounded">
+		<div className="sticky bottom-0 pt-2 rounded surface-variant">
 			<div className="flex rounded-lg">
 				<div className="flex px-2 w-full">
 					<input
@@ -43,10 +43,10 @@ export function AddItemInput({
 					/>
 				</div>
 			</div>
-			<div className="flex justify-between py-2">
+			<div className="flex justify-between px-1 items-center">
 				<Button
 					size="xs"
-					className="bg-inherit text-gray-200"
+					className="bg-inherit on-surface-variant"
 					onClick={() => onCancel()}
 				>
 					Cancel
@@ -54,9 +54,8 @@ export function AddItemInput({
 
 				<Button
 					size="sm"
-					className="bg-inherit text-gray-200"
+					className="bg-inherit on-surface-variant"
 					onClick={(event: any) => {
-						console.log("click Add");
 						setInputValue("");
 						inputRef.current?.focus();
 
