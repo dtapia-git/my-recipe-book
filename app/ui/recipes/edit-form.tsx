@@ -115,8 +115,8 @@ export function EditRecipeForm({
 					/>
 				</div>
 			</section>
-			<section className="rounded py-2 flex flex-col gap-2 surface-container-low">
-				<div className="max-h-52 overflow-scroll px-2">
+			<section className="rounded flex flex-col gap-2 surface-container-low">
+				<div className="max-h-52 overflow-scroll p-2">
 					<ItemsList
 						items={ingredientsList}
 						onDeleteListItem={handleDeleteIngredient}
@@ -148,8 +148,8 @@ export function EditRecipeForm({
 				)}
 			</section>
 
-			<section className="rounded py-2 px-2 flex flex-col gap-2 surface-container-low">
-				<div className="max-h-52 overflow-scroll">
+			<section className="rounded flex flex-col gap-2 surface-container-low">
+				<div className="max-h-52 overflow-scroll p-2">
 					<ItemsList
 						items={directionsList}
 						onDeleteListItem={handleDeleteDirection}
