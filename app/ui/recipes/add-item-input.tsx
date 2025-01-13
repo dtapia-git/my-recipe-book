@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { Button } from "flowbite-react";
 import { useRef, useState } from "react";
 
@@ -7,6 +8,7 @@ export function AddItemInput({
 }: { onAddItem: CallableFunction; onCancel: CallableFunction }) {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [inputValue, setInputValue] = useState<string>("");
+	const [isInputFocused, setIsInputFocused] = useState(true);
 
 	function handleFocus() {
 		if (inputRef.current) {
@@ -14,23 +16,31 @@ export function AddItemInput({
 				behavior: "smooth",
 				block: "nearest",
 			});
+
+			setIsInputFocused(true);
 		}
 	}
 
 	return (
-		<div className="sticky bottom-0 pt-2 rounded surface-variant">
-			<div className="flex rounded-lg">
-				<div className="flex px-2 w-full">
+		<div className="sticky bottom-0 pt-2 rounded surface-container-high">
+			<div className="px-2">
+				<div
+					className={cn(
+						"flex items-center rounded-lg button-outline ",
+						isInputFocused && "primary-outline",
+					)}
+				>
 					<input
 						autoFocus
 						ref={inputRef}
-						className="border-0 w-full focus:ring-0 text-black rounded-lg"
+						className="bg-inherit border-0 w-full focus:ring-0 rounded-lg"
 						id="add-ingredient"
 						type="text"
 						inputMode="text"
 						enterKeyHint="enter"
 						value={inputValue}
 						onFocus={handleFocus}
+						onBlur={() => setIsInputFocused(false)}
 						onChange={(event) => setInputValue(event.target.value)}
 						onKeyDown={(event) => {
 							if (event.key === "Enter") {
@@ -43,6 +53,7 @@ export function AddItemInput({
 					/>
 				</div>
 			</div>
+
 			<div className="flex justify-between px-1 items-center">
 				<Button
 					size="xs"
