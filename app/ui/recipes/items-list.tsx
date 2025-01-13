@@ -2,7 +2,7 @@
 
 import type { ListItem } from "@/app/lib/definitions";
 import { Button } from "flowbite-react";
-import { IoIosRemoveCircle } from "react-icons/io";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
 
 export function ItemsList({
 	items,
@@ -24,17 +24,18 @@ export function ItemsList({
 								<Button
 									pill
 									size="xs"
-									className="bg-transparent hover:enabled:bg-gray-100"
+									className="bg-transparent p-0 hover:enabled:bg-gray-100 "
 									onClick={() => onDeleteListItem(item.id)}
 								>
-									<IoIosRemoveCircle
+									{/* <IoIosRemoveCircle
 										className="h-5 w-5"
-										style={{ fill: "rgb(59 69 67)" }}
-									/>
-									{/* <IoIosRemoveCircleOutline
-										className="h-5 w-5"
-										style={{ fill: "rgb(28 38 36)" }}
+										style={{ fill: "rgb(96 122 117)" }}
 									/> */}
+
+									<IoIosRemoveCircleOutline
+										className="h-5 w-5"
+										style={{ fill: "rgb(96 122 117)" }}
+									/>
 								</Button>
 							</div>
 						</li>

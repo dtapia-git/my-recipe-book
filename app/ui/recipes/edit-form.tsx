@@ -167,9 +167,17 @@ export function EditRecipeForm({
 					</div>
 				) : (
 					<div className="flex p-2">
-						<Button
+						{/* <Button
 							size="xs"
 							className="secondary-container secondary-container-on w-full p-0 button-outline"
+							onClick={() => setIsAddDirectionEnabled(true)}
+						>
+							<IoAdd className="h-4 w-5" />
+							Add Direction
+						</Button> */}
+						<Button
+							size="xs"
+							className="bg-inherit button-outline primary w-full p-0 button-outline"
 							onClick={() => setIsAddDirectionEnabled(true)}
 						>
 							<IoAdd className="h-4 w-5" />
