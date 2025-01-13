@@ -43,7 +43,7 @@ export default function CustomTextInput({
 				/>
 			</div>
 
-			{inputValue && (
+			{isInputFocused && inputValue && (
 				<Button
 					color="light"
 					className="bg-transparent border-0 h-10 p-0"
