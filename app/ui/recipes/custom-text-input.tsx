@@ -49,10 +49,7 @@ export default function CustomTextInput({
 					className="bg-transparent border-0 h-10 p-0"
 					onClick={() => setInputValue("")}
 				>
-					<IoIosCloseCircle
-						className="h-5 w-5 self-center"
-						style={{ color: "rgb(59 69 67)" }}
-					/>
+					<IoIosCloseCircle className="h-5 w-5 self-center tertiary" />
 				</Button>
 			)}
 		</div>

@@ -57,7 +57,7 @@ export function AddItemInput({
 			<div className="flex justify-between px-1 items-center">
 				<Button
 					size="xs"
-					className="bg-inherit on-surface-variant"
+					className="bg-inherit tertiary"
 					onClick={() => onCancel()}
 				>
 					Cancel
@@ -65,7 +65,7 @@ export function AddItemInput({
 
 				<Button
 					size="sm"
-					className="bg-inherit on-surface-variant"
+					className="bg-inherit secondary"
 					onClick={(event: any) => {
 						setInputValue("");
 						inputRef.current?.focus();
