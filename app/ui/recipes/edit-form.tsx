@@ -115,7 +115,7 @@ export function EditRecipeForm({
 					/>
 				</div>
 			</section>
-			<section className="rounded flex flex-col gap-2 surface-container-low">
+			<section className="rounded flex flex-col surface-container-low">
 				<div className="max-h-52 overflow-scroll p-2">
 					<ItemsList
 						items={ingredientsList}
@@ -134,21 +134,20 @@ export function EditRecipeForm({
 						/>
 					</div>
 				) : (
-					<Button
-						size="xs"
-						className="bg-transparent p-0 button-outline"
-						style={{
-							color: "rgb(96 122 117)",
-						}}
-						onClick={() => setIsAddIngredientEnabled(true)}
-					>
-						<IoAdd className="h-4" />
-						Add Ingredient
-					</Button>
+					<div className="flex p-2">
+						<Button
+							size="xs"
+							className="secondary-container secondary-container-on w-full p-0 button-outline"
+							onClick={() => setIsAddIngredientEnabled(true)}
+						>
+							<IoAdd className="h-4" />
+							Add Ingredient
+						</Button>
+					</div>
 				)}
 			</section>
 
-			<section className="rounded flex flex-col gap-2 surface-container-low">
+			<section className="rounded flex flex-col surface-container-low">
 				<div className="max-h-52 overflow-scroll p-2">
 					<ItemsList
 						items={directionsList}
@@ -167,17 +166,16 @@ export function EditRecipeForm({
 						/>
 					</div>
 				) : (
-					<Button
-						size="xs"
-						className="bg-transparent p-0 button-outline"
-						style={{
-							color: "rgb(96 122 117)",
-						}}
-						onClick={() => setIsAddDirectionEnabled(true)}
-					>
-						<IoAdd className="h-4 w-5" />
-						Add Direction
-					</Button>
+					<div className="flex p-2">
+						<Button
+							size="xs"
+							className="secondary-container secondary-container-on w-full p-0 button-outline"
+							onClick={() => setIsAddDirectionEnabled(true)}
+						>
+							<IoAdd className="h-4 w-5" />
+							Add Direction
+						</Button>
+					</div>
 				)}
 			</section>
 			<div className="fixed bottom-4 right-3">
