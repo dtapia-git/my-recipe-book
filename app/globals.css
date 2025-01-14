@@ -3,25 +3,86 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+  --foreground-rgb: rgb(233 239 237);
+  --background-start-rgb: 233 239 237;
+  --background-end-rgb: 233 239 237;
 
 body {
   color: rgb(var(--foreground-rgb));
 }
 
-@layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Material */
+
+  .background {
+    background-color: rgb(244 251 248);
+  }
+
+  .button-outline {
+    outline: 1px solid #79747E
+  }
+
+  .surface-container {
+    background-color: rgb(233 239 237);
+  }
+
+  .surface-container-low {
+    background-color: rgb(239 245 242);
+  }
+
+  .surface-container-high {
+    background-color: rgb(227 234 231)
+  }
+
+  .surface-container-highest {
+    background-color:  rgb(221 228 225);
+  }
+
+  .surface-variant {
+    background-color: rgb(218 229 226);
+  }
+
+  .on-surface-variant {
+    color: rgb(59 69 67);
+  }
+
+  .primary {
+    color: rgb(0 76 69)
+  }
+
+  .outline-1 {
+    outline: solid 1px rgb(0 76 69);
+  }
+
+  .primary-outline {
+    outline: solid 2px rgb(0 76 69);
+  }
+
+  .primary-container {
+    background-color: rgb(40 129 119);
+    color: rgb(255 255 255)
+  } 
+
+  .primary-container-on {
+    color: rgb(255 255 255)
+  }
+
+  .secondary {
+    color: rgb(47 71 67)
+  }
+
+  .secondary-container {
+    background-color: rgb(96 122 117);
+  }
+
+  .secondary-container-on {
+    color: rgb(255 255 255)
+  }
+
+  .tertiary {
+    color: rgb(42 69 93)
   }
 }

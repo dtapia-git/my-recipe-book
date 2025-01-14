@@ -1,4 +1,4 @@
-import { Recipe } from "./definitions";
+import type { Recipe } from "./definitions";
 
 const recipes: Recipe[] = [
   {
