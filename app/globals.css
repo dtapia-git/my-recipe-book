@@ -17,8 +17,37 @@ body {
 
   /* Material */
 
+.input-container-outline {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding-left: 12px;
+  position: relative;
+  outline: 1px solid #79747E;
+}
+
+.floating-input-label {
+  position: absolute;
+  color: rgb(59 69 67);
+  font-size: 16px;
+}
+
+.floating-input-label-focused {
+    position: absolute;
+    top: -10px;
+    left: 8px;
+    font-size: 12px;
+    padding: 0 4px;
+    background-color: rgb(244 251 248);
+}
+
   .background {
     background-color: rgb(244 251 248);
+  }
+
+  .input-label {
+    font-size: 16px;
+    font-weight: 400;
   }
 
   .button-outline {
@@ -28,6 +57,11 @@ body {
   .surface-container {
     background-color: rgb(233 239 237);
   }
+
+  .color-on-surface-variant {
+    color: rgb(59 69 67);
+    fill: rgb(59 69 67);
+  } 
 
   .surface-container-low {
     background-color: rgb(239 245 242);
@@ -45,6 +79,10 @@ body {
     background-color: rgb(218 229 226);
   }
 
+  .on-surface {
+    color: rgb(22 29 28);
+  }
+  
   .on-surface-variant {
     color: rgb(59 69 67);
   }
@@ -74,8 +112,13 @@ body {
     color: rgb(47 71 67)
   }
 
+  .secondary-fill {
+    fill: rgb(47 71 67)
+  }
+
   .secondary-container {
     background-color: rgb(96 122 117);
+    fill: rgb(96 122 117);
   }
 
   .secondary-container-on {

@@ -2,8 +2,8 @@
 
 import cn from "classnames";
 import { Button } from "flowbite-react";
-import { useState } from "react";
-import { IoIosCloseCircle } from "react-icons/io";
+import { useRef, useState } from "react";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 export default function CustomTextInput({
 	id,
@@ -16,21 +16,32 @@ export default function CustomTextInput({
 	value: string;
 	validationError?: string[];
 }) {
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [inputValue, setInputValue] = useState(value);
 	const [isInputFocused, setIsInputFocused] = useState(false);
 
 	return (
-		<div
-			className={cn(
-				"flex items-center rounded-lg button-outline",
-				validationError?.length && "border-red-500 bg-red-100",
-				isInputFocused && "primary-outline",
-			)}
-		>
-			<div className="flex-1">
+		<>
+			<div
+				className={cn(
+					"input-container-outline rounded",
+					validationError?.length && "border-red-500 bg-red-100",
+					isInputFocused && "primary-outline",
+				)}
+			>
+				<label
+					className={cn(
+						"floating-input-label color-on-surface-variant",
+						(isInputFocused || inputValue) &&
+							"floating-input-label-focused primary",
+					)}
+					htmlFor="recipeName"
+				>
+					Recipe
+				</label>
 				<input
-					className="bg-inherit border-0 w-full focus:ring-0 rounded-lg"
-					style={{ color: "rgb(0, 0, 0)" }}
+					ref={inputRef}
+					className="bg-inherit border-0 p-0 w-full focus:ring-0 rounded on-surface"
 					id={id}
 					name={name}
 					inputMode="text"
@@ -41,17 +52,24 @@ export default function CustomTextInput({
 					value={inputValue}
 					onChange={(event) => setInputValue(event.target.value)}
 				/>
-			</div>
 
-			{isInputFocused && inputValue && (
-				<Button
-					color="light"
-					className="bg-transparent border-0 h-10 p-0"
-					onClick={() => setInputValue("")}
-				>
-					<IoIosCloseCircle className="h-5 w-5 self-center tertiary" />
-				</Button>
-			)}
-		</div>
+				{true && inputValue && (
+					<Button
+						color="light"
+						className="bg-transparent border-0 h-10 p-0"
+						onClick={() => {
+							setInputValue("");
+
+							if (inputRef.current) {
+								inputRef.current.focus();
+								setIsInputFocused(true);
+							}
+						}}
+					>
+						<IoMdCloseCircleOutline className="h-5 w-5 self-center on-surface-variant" />
+					</Button>
+				)}
+			</div>
+		</>
 	);
 }

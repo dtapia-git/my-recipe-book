@@ -45,7 +45,6 @@ export async function updateRecipe(
 	}
 
 	const { recipeName, ingredients, directions } = validatedFields.data;
-	console.log(validatedFields.data, "validatedFields.data");
 	const ingredientsSql = `{${ingredients}}`;
 	const directionSql = `{${directions}}`;
 

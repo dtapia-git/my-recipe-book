@@ -2,8 +2,7 @@
 
 import { type FormState, updateRecipe } from "@/app/lib/actions";
 import type { ListItem, Recipe } from "@/app/lib/definitions";
-import cn from "classnames";
-import { Button, Label } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { useActionState, useRef, useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
@@ -93,20 +92,19 @@ export function EditRecipeForm({
 	// console.log(JSON.stringify(state), "state in edit form");
 
 	return (
-		<form action={formAction} className="flex flex-col h-full gap-4 p-3">
+		<form action={formAction} className="flex flex-col h-full gap-4 p-3 pt-7">
 			<section>
 				<div>
-					<div className="block">
+					{/* <div className="block">
 						<Label
 							htmlFor="recipeName"
 							value="Recipe"
 							className={cn(
-								"text-xs font-mediu",
-								state?.errors?.recipeName && "text-sm text-red-500",
+								"input-label color-on-surface-variant",
+								state?.errors?.recipeName && "input-label text-red-500",
 							)}
-							style={{ color: "rgb(28 38 36)" }}
 						/>
-					</div>
+					</div> */}
 					<CustomTextInput
 						id="recipeName"
 						name="recipeName"
@@ -116,19 +114,20 @@ export function EditRecipeForm({
 				</div>
 			</section>
 			<section className="rounded flex flex-col surface-container-low">
-				<div className="max-h-52 overflow-scroll p-2">
-					<ItemsList
-						items={ingredientsList}
-						onDeleteListItem={handleDeleteIngredient}
-					/>
-				</div>
+				{ingredientsList.length > 0 && (
+					<div className="max-h-52 overflow-scroll p-2">
+						<ItemsList
+							items={ingredientsList}
+							onDeleteListItem={handleDeleteIngredient}
+						/>
+					</div>
+				)}
 
 				{isAddIngredientEnabled ? (
 					<div ref={ingredientInputRef}>
 						<AddItemInput
 							onAddItem={(value: string) => handleAddIngredient(value)}
 							onCancel={() => {
-								console.log("click Cancel");
 								setIsAddIngredientEnabled(false);
 							}}
 						/>
@@ -137,7 +136,7 @@ export function EditRecipeForm({
 					<div className="flex p-2">
 						<Button
 							size="xs"
-							className="secondary-container secondary-container-on w-full p-0 button-outline"
+							className="bg-inherit button-outline primary w-full p-0 button-outline"
 							onClick={() => setIsAddIngredientEnabled(true)}
 						>
 							<IoAdd className="h-4" />
@@ -148,12 +147,14 @@ export function EditRecipeForm({
 			</section>
 
 			<section className="rounded flex flex-col surface-container-low">
-				<div className="max-h-52 overflow-scroll p-2">
-					<ItemsList
-						items={directionsList}
-						onDeleteListItem={handleDeleteDirection}
-					/>
-				</div>
+				{directionsList.length > 0 && (
+					<div className="max-h-52 overflow-scroll p-2">
+						<ItemsList
+							items={directionsList}
+							onDeleteListItem={handleDeleteDirection}
+						/>
+					</div>
+				)}
 
 				{isAddDirectionEnabled ? (
 					<div ref={ingredientInputRef}>
@@ -167,14 +168,6 @@ export function EditRecipeForm({
 					</div>
 				) : (
 					<div className="flex p-2">
-						{/* <Button
-							size="xs"
-							className="secondary-container secondary-container-on w-full p-0 button-outline"
-							onClick={() => setIsAddDirectionEnabled(true)}
-						>
-							<IoAdd className="h-4 w-5" />
-							Add Direction
-						</Button> */}
 						<Button
 							size="xs"
 							className="bg-inherit button-outline primary w-full p-0 button-outline"
