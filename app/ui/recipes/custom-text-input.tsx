@@ -16,9 +16,9 @@ export default function CustomTextInput({
 	value: string;
 	validationError?: string[];
 }) {
-	const inputRef = useRef<HTMLInputElement>(null);
 	const [inputValue, setInputValue] = useState(value);
 	const [isInputFocused, setIsInputFocused] = useState(false);
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	return (
 		<>
@@ -46,29 +46,32 @@ export default function CustomTextInput({
 					name={name}
 					inputMode="text"
 					type="text"
+					value={inputValue}
+					enterKeyHint="enter"
 					onFocus={() => setIsInputFocused(true)}
 					onBlur={() => setIsInputFocused(false)}
-					enterKeyHint="enter"
-					value={inputValue}
 					onChange={(event) => setInputValue(event.target.value)}
 				/>
 
-				{true && inputValue && (
-					<Button
-						color="light"
-						className="bg-transparent border-0 h-10 p-0"
-						onClick={() => {
-							setInputValue("");
+				<Button
+					tabIndex={0}
+					color="light"
+					className={cn(
+						"bg-transparent border-0 h-10 p-0",
+						isInputFocused && "visible",
+						!isInputFocused && "invisible",
+					)}
+					onClick={() => {
+						setInputValue("");
 
-							if (inputRef.current) {
-								inputRef.current.focus();
-								setIsInputFocused(true);
-							}
-						}}
-					>
-						<IoMdCloseCircleOutline className="h-5 w-5 self-center on-surface-variant" />
-					</Button>
-				)}
+						if (inputRef.current) {
+							inputRef.current.focus();
+							setIsInputFocused(true);
+						}
+					}}
+				>
+					<IoMdCloseCircleOutline className="h-5 w-5 self-center on-surface-variant" />
+				</Button>
 			</div>
 		</>
 	);
