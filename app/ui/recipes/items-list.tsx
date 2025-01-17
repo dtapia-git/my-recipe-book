@@ -24,18 +24,10 @@ export function ItemsList({
 								<Button
 									pill
 									size="xs"
-									className="bg-transparent p-0 hover:enabled:bg-gray-100 "
+									className="bg-transparent border-0 h-10 p-0 hover:enabled:bg-gray-100 "
 									onClick={() => onDeleteListItem(item.id)}
 								>
-									{/* <IoIosRemoveCircle
-										className="h-5 w-5"
-										style={{ fill: "rgb(96 122 117)" }}
-									/> */}
-
-									<IoIosRemoveCircleOutline
-										className="h-5 w-5"
-										style={{ fill: "rgb(96 122 117)" }}
-									/>
+									<IoIosRemoveCircleOutline className="h-5 w-5 secondary-fill" />
 								</Button>
 							</div>
 						</li>

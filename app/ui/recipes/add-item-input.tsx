@@ -26,7 +26,7 @@ export function AddItemInput({
 			<div className="px-2">
 				<div
 					className={cn(
-						"flex items-center rounded-lg button-outline ",
+						"flex items-center rounded-lg button-outline",
 						isInputFocused && "primary-outline",
 					)}
 				>

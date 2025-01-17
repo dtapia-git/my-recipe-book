@@ -3,8 +3,10 @@
 import { type FormState, updateRecipe } from "@/app/lib/actions";
 import type { ListItem, Recipe } from "@/app/lib/definitions";
 import cn from "classnames";
-import { Button, Label } from "flowbite-react";
-import { useActionState, useRef, useState } from "react";
+import { Button } from "flowbite-react";
+import { useActionState, useState } from "react";
+import { useFormStatus } from "react-dom";
+import { AiOutlineLoading } from "react-icons/ai";
 import { IoAdd } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import { AddItemInput } from "./add-item-input";
@@ -25,28 +27,12 @@ export function EditRecipeForm({
 		ingredientsList.map((item: ListItem) => item.value),
 		directionsList.map((item: ListItem) => item.value),
 	);
-	const ingredientInputRef = useRef<HTMLInputElement>(null);
-	const directionInputRef = useRef<HTMLInputElement>(null);
 	const initialState: FormState = { message: null, errors: {} };
 	const [state, formAction] = useActionState(updateRecipeWithId, initialState);
 	const [isAddIngredientEnabled, setIsAddIngredientEnabled] =
 		useState<boolean>(false);
 	const [isAddDirectionEnabled, setIsAddDirectionEnabled] =
 		useState<boolean>(false);
-	// useEffect(() => {
-	// 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	// 	const handleClickOutside = (event: any) => {
-	// 		if (
-	// 			ingredientInputRef.current &&
-	// 			!ingredientInputRef.current.contains(event.target)
-	// 		) {
-	// 			setIsAddIngredientEnabled(false);
-	// 		}
-	// 	};
-
-	// 	document.addEventListener("mousedown", handleClickOutside);
-	// 	return () => document.removeEventListener("mousedown", handleClickOutside);
-	// }, []);
 
 	function initializeIngredients() {
 		return recipe.ingredients.map((ingredient) => {
@@ -90,54 +76,62 @@ export function EditRecipeForm({
 		);
 	}
 
-	// console.log(JSON.stringify(state), "state in edit form");
+	function Submit() {
+		const { pending } = useFormStatus();
+		return (
+			<Button
+				type="submit"
+				disabled={pending}
+				className="primary-container"
+				pill
+			>
+				{pending && (
+					<AiOutlineLoading
+						className="h-6 w-6 animate-spin absolute"
+						style={{ top: "8px", left: "41px" }}
+					/>
+				)}
+
+				<span className={cn(pending && "invisible")}>Save Recipe</span>
+			</Button>
+		);
+	}
+
+	console.log(JSON.stringify(state), "state in edit form");
 
 	return (
-		<form action={formAction} className="flex flex-col h-full gap-4 p-3">
+		<form action={formAction} className="flex flex-col h-full gap-4 p-3 pt-7">
 			<section>
-				<div>
-					<div className="block">
-						<Label
-							htmlFor="recipeName"
-							value="Recipe"
-							className={cn(
-								"text-xs font-mediu",
-								state?.errors?.recipeName && "text-sm text-red-500",
-							)}
-							style={{ color: "rgb(28 38 36)" }}
-						/>
-					</div>
-					<CustomTextInput
-						id="recipeName"
-						name="recipeName"
-						value={recipe.name}
-						validationError={state?.errors?.recipeName}
-					/>
-				</div>
+				<CustomTextInput
+					id="recipeName"
+					label="Recipe name"
+					name="recipeName"
+					value={recipe.name}
+					validationError={state?.errors?.recipeName}
+				/>
 			</section>
 			<section className="rounded flex flex-col surface-container-low">
-				<div className="max-h-52 overflow-scroll p-2">
-					<ItemsList
-						items={ingredientsList}
-						onDeleteListItem={handleDeleteIngredient}
-					/>
-				</div>
-
-				{isAddIngredientEnabled ? (
-					<div ref={ingredientInputRef}>
-						<AddItemInput
-							onAddItem={(value: string) => handleAddIngredient(value)}
-							onCancel={() => {
-								console.log("click Cancel");
-								setIsAddIngredientEnabled(false);
-							}}
+				{ingredientsList.length > 0 && (
+					<div className="max-h-52 overflow-scroll p-2">
+						<ItemsList
+							items={ingredientsList}
+							onDeleteListItem={handleDeleteIngredient}
 						/>
 					</div>
+				)}
+
+				{isAddIngredientEnabled ? (
+					<AddItemInput
+						onAddItem={(value: string) => handleAddIngredient(value)}
+						onCancel={() => {
+							setIsAddIngredientEnabled(false);
+						}}
+					/>
 				) : (
 					<div className="flex p-2">
 						<Button
 							size="xs"
-							className="secondary-container secondary-container-on w-full p-0 button-outline"
+							className="bg-inherit button-outline primary w-full p-0 button-outline"
 							onClick={() => setIsAddIngredientEnabled(true)}
 						>
 							<IoAdd className="h-4" />
@@ -148,33 +142,25 @@ export function EditRecipeForm({
 			</section>
 
 			<section className="rounded flex flex-col surface-container-low">
-				<div className="max-h-52 overflow-scroll p-2">
-					<ItemsList
-						items={directionsList}
-						onDeleteListItem={handleDeleteDirection}
-					/>
-				</div>
-
-				{isAddDirectionEnabled ? (
-					<div ref={ingredientInputRef}>
-						<AddItemInput
-							onAddItem={(value: string) => handleAddDirection(value)}
-							onCancel={() => {
-								console.log("click Cancel");
-								setIsAddDirectionEnabled(false);
-							}}
+				{directionsList.length > 0 && (
+					<div className="max-h-52 overflow-scroll p-2">
+						<ItemsList
+							items={directionsList}
+							onDeleteListItem={handleDeleteDirection}
 						/>
 					</div>
+				)}
+
+				{isAddDirectionEnabled ? (
+					<AddItemInput
+						onAddItem={(value: string) => handleAddDirection(value)}
+						onCancel={() => {
+							console.log("click Cancel");
+							setIsAddDirectionEnabled(false);
+						}}
+					/>
 				) : (
 					<div className="flex p-2">
-						{/* <Button
-							size="xs"
-							className="secondary-container secondary-container-on w-full p-0 button-outline"
-							onClick={() => setIsAddDirectionEnabled(true)}
-						>
-							<IoAdd className="h-4 w-5" />
-							Add Direction
-						</Button> */}
 						<Button
 							size="xs"
 							className="bg-inherit button-outline primary w-full p-0 button-outline"
@@ -187,9 +173,7 @@ export function EditRecipeForm({
 				)}
 			</section>
 			<div className="fixed bottom-4 right-3">
-				<Button type="submit" className="primary-container" pill>
-					Save Recipe
-				</Button>
+				<Submit />
 			</div>
 		</form>
 	);
