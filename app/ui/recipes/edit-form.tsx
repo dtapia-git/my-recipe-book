@@ -111,6 +111,7 @@ export function EditRecipeForm({
 				/>
 			</section>
 			<section className="flex flex-col">
+				<h2 className="on-surface-variant">Ingredients</h2>
 				{ingredientsList.length > 0 && (
 					<ItemsList
 						items={ingredientsList}
@@ -130,18 +131,17 @@ export function EditRecipeForm({
 						onCancel={() => setIsAddIngredientEnabled(false)}
 					/>
 				) : (
-					<div className="flex p-2">
-						<MaterialButton
-							style="outlined"
-							className="w-full"
-							label="Add Ingredient"
-							onClick={() => setIsAddIngredientEnabled(true)}
-						/>
-					</div>
+					<MaterialButton
+						style="outlined"
+						className="w-full"
+						label="Add Ingredient"
+						onClick={() => setIsAddIngredientEnabled(true)}
+					/>
 				)}
 			</section>
 
 			<section className="rounded flex flex-col">
+				<h2 className="on-surface-variant">Directions</h2>
 				{directionsList.length > 0 && (
 					<div className="max-h-52 overflow-scroll">
 						<ItemsList
