@@ -11,21 +11,19 @@ export function ItemsList({
 	onDeleteListItem: CallableFunction;
 }) {
 	return (
-		<div>
+		<div className="mat-list-container surface">
 			{items.length > 0 && (
-				<ul className="list-none text-sm">
+				<ul>
 					{items.map((item: ListItem) => (
-						<li key={item.id}>
-							<div className="flex items-center">
-								<p className="flex-1 on-surface">{item.value}</p>
-								<button
-									type="button"
-									className="bg-transparent rounded-full mat-icon-button_standard flex justify-center"
-									onClick={() => onDeleteListItem(item.id)}
-								>
-									<IoIosRemoveCircleOutline className="h-6 w-6 self-center on-surface-variant" />
-								</button>
-							</div>
+						<li key={item.id} className="mat-list-item surface">
+							<p className="flex-1 on-surface">{item.value}</p>
+							<button
+								type="button"
+								className="bg-transparent rounded-full mat-icon-button_standard flex justify-center"
+								onClick={() => onDeleteListItem(item.id)}
+							>
+								<IoIosRemoveCircleOutline className="h-6 w-6 self-center on-surface-variant" />
+							</button>
 						</li>
 					))}
 				</ul>

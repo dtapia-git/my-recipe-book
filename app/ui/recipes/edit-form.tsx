@@ -110,14 +110,18 @@ export function EditRecipeForm({
 					validationError={state?.errors?.recipeName}
 				/>
 			</section>
-			<section className="rounded flex flex-col surface-container-low">
+			<section className="flex flex-col">
 				{ingredientsList.length > 0 && (
-					<div className="max-h-52 overflow-scroll p-2">
-						<ItemsList
-							items={ingredientsList}
-							onDeleteListItem={handleDeleteIngredient}
-						/>
-					</div>
+					<ItemsList
+						items={ingredientsList}
+						onDeleteListItem={handleDeleteIngredient}
+					/>
+					// <div className="max-h-52 overflow-scroll">
+					// 	<ItemsList
+					// 		items={ingredientsList}
+					// 		onDeleteListItem={handleDeleteIngredient}
+					// 	/>
+					// </div>
 				)}
 
 				{isAddIngredientEnabled ? (
@@ -137,9 +141,9 @@ export function EditRecipeForm({
 				)}
 			</section>
 
-			<section className="rounded flex flex-col surface-container-low">
+			<section className="rounded flex flex-col">
 				{directionsList.length > 0 && (
-					<div className="max-h-52 overflow-scroll p-2">
+					<div className="max-h-52 overflow-scroll">
 						<ItemsList
 							items={directionsList}
 							onDeleteListItem={handleDeleteDirection}
