@@ -1,7 +1,6 @@
 "use client";
 
 import type { ListItem } from "@/app/lib/definitions";
-import { Button } from "flowbite-react";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 
 export function ItemsList({
@@ -18,17 +17,14 @@ export function ItemsList({
 					{items.map((item: ListItem) => (
 						<li key={item.id}>
 							<div className="flex items-center">
-								<div className="flex-1" style={{ color: "rgb(28 38 36)" }}>
-									{item.value}
-								</div>
-								<Button
-									pill
-									size="xs"
-									className="bg-transparent border-0 h-10 p-0 hover:enabled:bg-gray-100 "
+								<p className="flex-1 on-surface">{item.value}</p>
+								<button
+									type="button"
+									className="bg-transparent rounded-full mat-icon-button_standard flex justify-center"
 									onClick={() => onDeleteListItem(item.id)}
 								>
-									<IoIosRemoveCircleOutline className="h-5 w-5 secondary-fill" />
-								</Button>
+									<IoIosRemoveCircleOutline className="h-6 w-6 self-center on-surface-variant" />
+								</button>
 							</div>
 						</li>
 					))}
