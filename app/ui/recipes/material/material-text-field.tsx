@@ -49,6 +49,11 @@ export default function MaterialTextField({
 					name={name}
 					value={inputValue}
 					enterKeyHint="enter"
+					onKeyDown={(event) => {
+						if (event.key === "Enter") {
+							event.preventDefault();
+						}
+					}}
 					onChange={(event) => setInputValue(event.target.value)}
 				/>
 
