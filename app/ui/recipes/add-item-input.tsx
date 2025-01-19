@@ -1,6 +1,5 @@
-import cn from "classnames";
-import { Button } from "flowbite-react";
 import { useRef, useState } from "react";
+import { MaterialButton } from "./material/material-button";
 
 export function AddItemInput({
 	onAddItem,
@@ -24,16 +23,12 @@ export function AddItemInput({
 	return (
 		<div className="sticky bottom-0 pt-2 rounded surface-container-high">
 			<div className="px-2">
-				<div
-					className={cn(
-						"flex items-center rounded-lg button-outline",
-						isInputFocused && "primary-outline",
-					)}
-				>
+				<div className="mat-text-field-outline">
 					<input
+						// biome-ignore lint/a11y/noAutofocus: <explanation>
 						autoFocus
 						ref={inputRef}
-						className="bg-inherit border-0 w-full focus:ring-0 rounded-lg"
+						className="mat-input focus:ring-0 on-surface-variant"
 						id="add-ingredient"
 						type="text"
 						inputMode="text"
@@ -54,27 +49,25 @@ export function AddItemInput({
 				</div>
 			</div>
 
-			<div className="flex justify-between px-1 items-center">
-				<Button
-					size="xs"
-					className="bg-inherit tertiary"
+			<div className="flex justify-between px-2 items-center">
+				<MaterialButton
+					style="text"
+					className="mat-tertiary-color"
+					label="Cancel"
 					onClick={() => onCancel()}
-				>
-					Cancel
-				</Button>
+				/>
 
-				<Button
-					size="sm"
-					className="bg-inherit secondary"
-					onClick={(event: any) => {
+				<MaterialButton
+					style="text"
+					className="mat-secondary-color"
+					label="Add"
+					onClick={() => {
 						setInputValue("");
 						inputRef.current?.focus();
 
 						onAddItem(inputValue);
 					}}
-				>
-					Add
-				</Button>
+				/>
 			</div>
 		</div>
 	);

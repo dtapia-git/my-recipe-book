@@ -7,11 +7,11 @@ import { Button } from "flowbite-react";
 import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { AiOutlineLoading } from "react-icons/ai";
-import { IoAdd } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import { AddItemInput } from "./add-item-input";
-import CustomTextInput from "./custom-text-input";
 import { ItemsList } from "./items-list";
+import { MaterialButton } from "./material/material-button";
+import MaterialTextField from "./material/material-text-field";
 
 export function EditRecipeForm({
 	recipe,
@@ -82,7 +82,7 @@ export function EditRecipeForm({
 			<Button
 				type="submit"
 				disabled={pending}
-				className="primary-container"
+				className="primary-container on-"
 				pill
 			>
 				{pending && (
@@ -102,7 +102,7 @@ export function EditRecipeForm({
 	return (
 		<form action={formAction} className="flex flex-col h-full gap-4 p-3 pt-7">
 			<section>
-				<CustomTextInput
+				<MaterialTextField
 					id="recipeName"
 					label="Recipe name"
 					name="recipeName"
@@ -110,9 +110,10 @@ export function EditRecipeForm({
 					validationError={state?.errors?.recipeName}
 				/>
 			</section>
-			<section className="rounded flex flex-col surface-container-low">
+			<section className="flex flex-col">
+				<h2 className="on-surface-variant">Ingredients</h2>
 				{ingredientsList.length > 0 && (
-					<div className="max-h-52 overflow-scroll p-2">
+					<div className="max-h-52 overflow-scroll">
 						<ItemsList
 							items={ingredientsList}
 							onDeleteListItem={handleDeleteIngredient}
@@ -123,27 +124,22 @@ export function EditRecipeForm({
 				{isAddIngredientEnabled ? (
 					<AddItemInput
 						onAddItem={(value: string) => handleAddIngredient(value)}
-						onCancel={() => {
-							setIsAddIngredientEnabled(false);
-						}}
+						onCancel={() => setIsAddIngredientEnabled(false)}
 					/>
 				) : (
-					<div className="flex p-2">
-						<Button
-							size="xs"
-							className="bg-inherit button-outline primary w-full p-0 button-outline"
-							onClick={() => setIsAddIngredientEnabled(true)}
-						>
-							<IoAdd className="h-4" />
-							Add Ingredient
-						</Button>
-					</div>
+					<MaterialButton
+						style="outlined"
+						className="w-full"
+						label="Add Ingredient"
+						onClick={() => setIsAddIngredientEnabled(true)}
+					/>
 				)}
 			</section>
 
-			<section className="rounded flex flex-col surface-container-low">
+			<section className="rounded flex flex-col">
+				<h2 className="on-surface-variant">Directions</h2>
 				{directionsList.length > 0 && (
-					<div className="max-h-52 overflow-scroll p-2">
+					<div className="max-h-52 overflow-scroll">
 						<ItemsList
 							items={directionsList}
 							onDeleteListItem={handleDeleteDirection}
@@ -154,21 +150,16 @@ export function EditRecipeForm({
 				{isAddDirectionEnabled ? (
 					<AddItemInput
 						onAddItem={(value: string) => handleAddDirection(value)}
-						onCancel={() => {
-							console.log("click Cancel");
-							setIsAddDirectionEnabled(false);
-						}}
+						onCancel={() => setIsAddDirectionEnabled(false)}
 					/>
 				) : (
 					<div className="flex p-2">
-						<Button
-							size="xs"
-							className="bg-inherit button-outline primary w-full p-0 button-outline"
+						<MaterialButton
+							style="outlined"
+							className="w-full"
+							label="Add Direction"
 							onClick={() => setIsAddDirectionEnabled(true)}
-						>
-							<IoAdd className="h-4 w-5" />
-							Add Direction
-						</Button>
+						/>
 					</div>
 				)}
 			</section>

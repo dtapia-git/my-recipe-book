@@ -1,0 +1,216 @@
+/* Text Field */
+.mat-text-field-outline {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    position: relative;
+    outline: 1px solid var(--md-sys-color-outline);
+    border-radius: 4px;
+
+    .mat-floating-label {
+        position: absolute;
+        left: 16px;
+        color: var(--md-sys-color-on-surface-variant);
+        font-size: 16px;
+    }
+
+    .mat-floating-label_populated {
+        position: absolute;
+        top: -10px;
+        left: 8px;
+        font-size: 12px;
+        padding: 0 4px;
+        color: var(--md-sys-color-on-surface-variant);
+        background-color: var(--md-sys-color-background);
+    }
+    
+    .mat-input {
+        background-color: inherit;
+        border: none;
+        padding: 0 16px;
+        width: 100%;
+        color: var(--md-sys-color-on-surface-variant)
+    }
+
+    .mat-trailing-icon {
+        display: none;
+    }
+}
+
+.mat-text-field-outline:focus-within {
+    outline-width: 2px;
+    outline-color: var(--md-sys-color-primary);
+
+    .mat-floating-label {
+        position: absolute;
+        top: -10px;
+        left: 8px;
+        font-size: 12px;
+        padding: 0 4px;
+        color: var(--md-sys-color-primary);
+        background-color: var(--md-sys-color-background);
+    }
+
+    .mat-input {
+        color: var(--md-sys-color-on-surface);
+        caret-color: var(--md-sys-color-primary);
+    }
+
+    .mat-trailing-icon {
+        display: block;
+    }
+}
+
+.mat-text-field-outline_error {
+    outline-color: var(--md-sys-color-error);
+
+    .mat-floating-label,
+    .mat-floating-label_populated {
+        color: var(--md-sys-color-error) !important;
+    }
+
+    .mat-input {
+        color: var(--md-sys-color-error) !important;
+        caret-color: var(--md-sys-color-error) !important;
+    }
+}
+
+.mat-supporting-text {
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px 16px 0 12px;
+}
+
+.mat-error-text {
+    color: var(--md-sys-color-error);
+    line-height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px 16px 0 12px;
+}
+/* Text Field */
+
+/* Button */
+.mat-button_text {
+    height: 40px;
+    padding: 0 12px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.mat-button_outlined {
+    height: 40px;
+    padding: 0 24px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    outline: 1px solid var(--md-sys-color-outline);
+    color: var(--md-sys-color-primary);
+    border-radius: 24px;
+}
+
+.mat-icon-button_standard {
+    height: 40px;
+    width: 40px;
+}
+
+.mat-icon-button_outlined {
+    height: 40px;
+    width: 40px;
+    outline: 1px solid var(--md-sys-color-outline);
+}
+/* Button */
+
+/* List */
+.mat-list-container {
+    padding: 8px 0;
+    list-style: none;
+}
+
+.mat-list-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* List */
+
+
+
+/* Surface Colors */
+.surface-container {
+    background-color: var(--md-sys-color-surface-container);
+}
+
+.surface-container-low {
+    background-color: var(--md-sys-color-surface-container-low);
+}
+
+.surface-container-high {
+    background-color: var(--md-sys-color-surface-container-high)
+}
+
+.surface-container-highest {
+    background-color:  var(--md-sys-color-surface-container-highest);
+}
+
+.surface {
+    background-color: var(--md-sys-color-surface);
+}
+
+.surface-variant {
+    background-color: var(--md-sys-color-surface-variant);
+}
+
+.on-surface {
+    color: var(--md-sys-color-on-surface);
+}
+
+.on-surface-variant {
+    color: var( --md-sys-color-on-surface-variant);
+}
+
+/* Container Colors */
+.primary-container {
+    background-color: var(--md-sys-color-primary-container);
+}
+
+.on-primary-container {
+    color: var(--md-sys-color-on-primary-container);
+}
+
+.secondary-container {
+    background-color: var(--md-sys-color-secondary-container);
+}
+
+.on-secondar-container {
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+
+
+
+/* Colors */
+.mat-primary-color {
+    color: var(--md-sys-color-primary);
+}
+
+.mat-secondary-color {
+    color: var(--md-sys-color-secondary);
+}
+
+.mat-tertiary-color {
+    color: var(--md-sys-color-tertiary);
+}
+
+.mat-error-color {
+    color: var(--md-sys-color-error);
+}
