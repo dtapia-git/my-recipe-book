@@ -11,19 +11,7 @@ export function SmallTopAppBar({
 }: { headline: string; href: string }) {
 	useEffect(() => {
 		exportAddScrollListener();
-		// function handlScroll(event) {
-		// 	console.log("scroll");
-		// 	document.documentElement.dataset.scroll = `${window.scrollY}`;
-		// }
-
-		// // Add event listener
-		// document.addEventListener("scroll", handlScroll);
-
-		// // Cleanup function to remove the listener when the component unmounts
-		// return () => {
-		// 	document.removeEventListener("scroll", handlScroll);
-		// };
-	}, []); // The empty
+	}, []);
 
 	return (
 		<div className="mat-top-app-bar-container_small">

@@ -23,10 +23,10 @@ export function exportAddScrollListener() {
 }
 
 function debounce(fn: CallableFunction) {
-	let frame;
+	let frame: any;
 
 	// The debounce function returns a new function that can receive a variable number of arguments
-	return (...params) => {
+	return (...params: any) => {
 		// If the frame variable has been defined, clear it now, and queue for next frame
 		if (frame) {
 			cancelAnimationFrame(frame);
