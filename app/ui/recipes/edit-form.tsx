@@ -113,12 +113,10 @@ export function EditRecipeForm({
 			<section className="flex flex-col">
 				<h2 className="on-surface-variant">Ingredients</h2>
 				{ingredientsList.length > 0 && (
-					<div className="max-h-52 overflow-scroll">
-						<ItemsList
-							items={ingredientsList}
-							onDeleteListItem={handleDeleteIngredient}
-						/>
-					</div>
+					<ItemsList
+						items={ingredientsList}
+						onDeleteListItem={handleDeleteIngredient}
+					/>
 				)}
 
 				{isAddIngredientEnabled ? (
@@ -139,12 +137,10 @@ export function EditRecipeForm({
 			<section className="rounded flex flex-col">
 				<h2 className="on-surface-variant">Directions</h2>
 				{directionsList.length > 0 && (
-					<div className="max-h-52 overflow-scroll">
-						<ItemsList
-							items={directionsList}
-							onDeleteListItem={handleDeleteDirection}
-						/>
-					</div>
+					<ItemsList
+						items={directionsList}
+						onDeleteListItem={handleDeleteDirection}
+					/>
 				)}
 
 				{isAddDirectionEnabled ? (
