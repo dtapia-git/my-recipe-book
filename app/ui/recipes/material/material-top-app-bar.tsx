@@ -4,10 +4,12 @@ export default function MaterialTopAppBar({
 	type,
 	headline,
 	href,
+	className
 }: {
 	type: "center-aligned" | "small" | "medium" | "large";
 	headline: string;
 	href: string;
+	className?: string;
 }) {
-	return <SmallTopAppBar headline={headline} href={href} />;
+	return <SmallTopAppBar headline={headline} href={href} className={className} />;
 }

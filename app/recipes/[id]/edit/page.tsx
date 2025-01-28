@@ -14,9 +14,16 @@ export default async function RecipeEdit(props: {
 	}
 
 	return (
-		<div className="min-w-10 max-w-lg mx-auto">
-			<MaterialTopAppBar type="small" headline="Recipe" href="view" />
-			<EditRecipeForm recipe={recipe} />
+		<div className="max-width_small mx-auto">
+			<MaterialTopAppBar
+				type="small"
+				headline="Recipe"
+				href="view"
+				className="w-full max-width_small"
+			/>
+			<div style={{ marginTop: "var(--md-top-app-bar-height)" }}>
+				<EditRecipeForm recipe={recipe} />
+			</div>
 		</div>
 	);
 }

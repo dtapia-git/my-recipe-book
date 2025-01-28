@@ -32,9 +32,14 @@
 
   --md-sys-color-outline: rgb(87 97 95);
 
+  --md-top-app-bar-height: 64px;
 
   body {
     background-color: var(--md-sys-color-background);
     color: var(--md-sys-color-on-background);
+  }
+
+  .max-width_small {
+    max-width: 430px;
   }
 }
