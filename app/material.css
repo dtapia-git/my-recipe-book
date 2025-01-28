@@ -1,3 +1,37 @@
+/* Top App Bar */
+.mat-top-app-bar-height_small {
+    height: var(--md-top-app-bar-height);
+}
+
+.mat-top-app-bar-container_small {
+    display: flex;
+    position: fixed;
+    top: 0;
+    align-items: center;
+    background-color: var(--md-sys-color-surface);
+    height: var(--md-top-app-bar-height);
+
+    .headline {
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 28px;
+        color: var(--md-sys-color-on-surface);
+    }
+}
+
+html:not([data-scroll='0']) {
+    .mat-top-app-bar-container_small {
+        /* position: fixed;
+    top: 0; */
+        z-index: 2;
+        background-color: var(--md-sys-color-surface-container);
+        box-shadow: 0 0px 2px -2px #000000;
+    }
+}
+
+/* Top App Bar */
+
+
 /* Text Field */
 .mat-text-field-outline {
     display: flex;
@@ -124,6 +158,66 @@
     width: 40px;
     outline: 1px solid var(--md-sys-color-outline);
 }
+
+/* .mat-icon-button_standard:hover {
+    .mat-icon-button-state-layer {
+        background-color: var(--md-sys-color-on-surface-variant);
+        opacity: 0.08;
+    }
+} */
+
+.mat-icon-button-state-layer {
+    height: 40px;
+    width: 40px;
+    border-radius: 24px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 2;
+}
+
+.mat-icon-button-content-layer {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 3;
+}
+
+/* .mat-icon-button-state-layer:hover {
+    background-color: var(--md-sys-color-on-surface-variant);
+    opacity: 0.08;
+} */
+
+.mat-icon-button_standard {
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+}
+
+/* .mat-icon-button_standard:hover  {
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+} */
+
+.mat-icon-button_standard:active .mat-icon-button-state-layer {
+    /* background-color: var(--md-sys-color-on-surface-variant); */
+    background-color: red;
+    opacity: 0.1;
+} 
+
+
+
+.mat-icon-button_standard:focus .mat-icon-button-state-layer {
+    background-color: var(--md-sys-color-on-surface-variant);
+    opacity: 0.1;
+}
+
+/* .mat-icon-button_standard:hover {
+    background: color-mix(in srgb, var(--md-sys-color-on-surface-variant), transparent 92%);
+} */
 /* Button */
 
 /* List */
@@ -140,7 +234,6 @@
     font-size: 16px;
     line-height: 24px;
 }
-
 /* List */
 
 
@@ -194,8 +287,6 @@
 .on-secondar-container {
     color: var(--md-sys-color-on-secondary-container);
 }
-
-
 
 
 /* Colors */

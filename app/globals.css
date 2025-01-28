@@ -8,6 +8,7 @@
 
   --md-sys-color-surface: rgb(244 251 248);
   --md-sys-color-on-surface: rgb(22 29 28);
+  --md-sys-color-surface-tint: rgb(0 106 97);
 
   --md-sys-color-surface-variant: rgb(218 229 226);
   --md-sys-color-on-surface-variant: rgb(59 69 67);
@@ -31,9 +32,14 @@
 
   --md-sys-color-outline: rgb(87 97 95);
 
+  --md-top-app-bar-height: 64px;
 
   body {
     background-color: var(--md-sys-color-background);
     color: var(--md-sys-color-on-background);
+  }
+
+  .max-width_small {
+    max-width: 430px;
   }
 }
