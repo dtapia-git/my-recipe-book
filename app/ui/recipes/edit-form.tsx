@@ -3,7 +3,6 @@
 import { type FormState, updateRecipe } from "@/app/lib/actions";
 import type { ListItem, Recipe } from "@/app/lib/definitions";
 import cn from "classnames";
-import { Button } from "flowbite-react";
 import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { AiOutlineLoading } from "react-icons/ai";
@@ -79,12 +78,7 @@ export function EditRecipeForm({
 	function Submit() {
 		const { pending } = useFormStatus();
 		return (
-			<Button
-				type="submit"
-				disabled={pending}
-				className="primary-container on-"
-				pill
-			>
+			<button type="submit" className="primary-container on">
 				{pending && (
 					<AiOutlineLoading
 						className="h-6 w-6 animate-spin absolute"
@@ -93,7 +87,7 @@ export function EditRecipeForm({
 				)}
 
 				<span className={cn(pending && "invisible")}>Save Recipe</span>
-			</Button>
+			</button>
 		);
 	}
 
