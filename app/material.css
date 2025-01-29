@@ -136,6 +136,40 @@ html:not([data-scroll='0']) {
     line-height: 20px;
 }
 
+.mat-icon-button_standard {
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+    /* transition: 0.8s; */
+}
+
+.mat-icon-button_standard:hover .mat-icon-button-state-layer {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 40px;
+    width: 40px;
+    border-radius: 24px;
+    background: color-mix(in srgb, var(--md-sys-color-on-surface-variant), transparent 92%);
+}
+
+/* .mat-icon-button_standard:hover {
+    background: color-mix(in srgb, var(--md-sys-color-on-surface-variant), transparent 92%);
+
+} */
+
+.mat-icon-button_standard:active {
+    background-color: color-mix(in srgb, var(--md-sys-color-on-surface-variant), transparent 90%);
+    transition: 0s;
+    background-size: 100%;
+    
+}
+
+.mat-icon-button_standard:focus {
+    outline: solid 3px var(--md-sys-color-secondary);
+    outline-offset: 2px;
+}
+
 .mat-button_outlined {
     height: 40px;
     padding: 0 24px;
@@ -148,25 +182,14 @@ html:not([data-scroll='0']) {
     border-radius: 24px;
 }
 
-.mat-icon-button_standard {
-    height: 40px;
-    width: 40px;
-}
-
 .mat-icon-button_outlined {
     height: 40px;
     width: 40px;
     outline: 1px solid var(--md-sys-color-outline);
 }
 
-/* .mat-icon-button_standard:hover {
-    .mat-icon-button-state-layer {
-        background-color: var(--md-sys-color-on-surface-variant);
-        opacity: 0.08;
-    }
-} */
 
-.mat-icon-button-state-layer {
+/* .mat-icon-button-state-layer {
     height: 40px;
     width: 40px;
     border-radius: 24px;
@@ -183,41 +206,8 @@ html:not([data-scroll='0']) {
     top: 4px;
     left: 4px;
     z-index: 3;
-}
-
-/* .mat-icon-button-state-layer:hover {
-    background-color: var(--md-sys-color-on-surface-variant);
-    opacity: 0.08;
 } */
 
-.mat-icon-button_standard {
-    height: 48px;
-    width: 48px;
-    border-radius: 24px;
-}
-
-/* .mat-icon-button_standard:hover  {
-    height: 48px;
-    width: 48px;
-    border-radius: 24px;
-} */
-
-.mat-icon-button_standard:active .mat-icon-button-state-layer {
-    /* background-color: var(--md-sys-color-on-surface-variant); */
-    background-color: red;
-    opacity: 0.1;
-} 
-
-
-
-.mat-icon-button_standard:focus .mat-icon-button-state-layer {
-    background-color: var(--md-sys-color-on-surface-variant);
-    opacity: 0.1;
-}
-
-/* .mat-icon-button_standard:hover {
-    background: color-mix(in srgb, var(--md-sys-color-on-surface-variant), transparent 92%);
-} */
 /* Button */
 
 /* List */

@@ -14,8 +14,8 @@ export function SmallTopAppBar({
 	}, []);
 
 	return (
-		<div className={`mat-top-app-bar-container_small ${className}`}>
-			<BackButton />
+		<div className={`mat-top-app-bar-container_small gap-4 ${className}`}>
+			<BackButton href={href} />
 			{/* <Link href={href}>
 				<BackButton />
 			</Link> */}
