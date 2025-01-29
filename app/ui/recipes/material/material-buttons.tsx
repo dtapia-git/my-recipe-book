@@ -1,3 +1,4 @@
+import Link from "next/dist/client/link";
 import type { MouseEventHandler } from "react";
 import { IoArrowBackSharp } from "react-icons/io5";
 import type { MatButtonStyle } from "./material-button";
@@ -37,16 +38,22 @@ export function OutlinedButton(props: MatButtonProps) {
 	);
 }
 
-export function BackButton() {
+export function BackButton({ href }: { href: string }) {
 	return (
-		<button
-			type="button"
+		<Link
+			href={href}
 			className="bg-transparent mat-icon-button_standard flex items-center relative"
 		>
-			{/* <div className="mat-icon-button-state-layer" /> */}
 			<span className="mat-icon-button-state-layer" />
-			{/* <span className="mat-icon-button-content-layer">Button label</span> */}
-			<IoArrowBackSharp className="mat-icon-button-content-layer h-6 w-6 mx-auto on-surface-variant" />
-		</button>
+			<IoArrowBackSharp className="h-6 w-6 mx-auto on-surface-variant" />
+		</Link>
+
+		// <button
+		// 	type="button"
+		// 	className="bg-transparent mat-icon-button_standard flex items-center relative"
+		// >
+		// 	<span className="mat-icon-button-state-layer"/>
+		// 	<IoArrowBackSharp className="h-6 w-6 mx-auto on-surface-variant" />
+		// </button>
 	);
 }
